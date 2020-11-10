@@ -75,26 +75,26 @@ function move() {
 
 
 var nourritureExist = false;
-var nourriturePosition;
+nourriturePosition = {
+    "axeX": 0,
+    "axeY": 0,
+};
+
 
 //_-_-_-_-_-GESTION NOURRITURE
-function nourriture() {
-    ctx.fillStyle = "#2ecc71";
-    let nbrNouritture = []
+var nbrNouritture = []
     for (var i = 0; i < 490; i += 10) {
         nbrNouritture.push(i);
     };
+function nourriture() {
+    ctx.fillStyle = "#2ecc71";
     if (nourritureExist === false) {
         let x = Math.floor(Math.random() * 48);
         let y = Math.floor(Math.random() * 48);
         for (var i = 0; i < snakeBody.length; i++) {
-            if (snakeBody[i].axeX == x) {
+            if (snakeBody[i].axeX == nbrNouritture[x] && snakeBody[i].axeY == nbrNouritture[y]) {
                 x += 1;
                 y += 1;
-            };
-            if (snakeBody[i].axeY == y) {
-                y += 1;
-                x += 1;
             };
         };
         ctx.fillRect(nbrNouritture[x], nbrNouritture[y], 10, 10);
@@ -104,7 +104,6 @@ function nourriture() {
             "axeY": nbrNouritture[y],
         };
     };
-
     if (snakeBody[snakeBody.length - 1].axeX === nourriturePosition.axeX) {
         if (snakeBody[snakeBody.length - 1].axeY === nourriturePosition.axeY) {
             ctx.fillStyle = "#34495e";
